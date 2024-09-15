@@ -1,0 +1,91 @@
+.events-details-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 10 10 10 10;
+}
+
+.container-event-details{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 1px 10px 30px rgba(0, 0, 0, 0.3);
+    width: 900px;
+    height: 600px;
+    padding: 10 10 10 10;
+}
+
+img#image-event-detail{
+    width: 450px;
+    height: 340px;
+    margin: 0 10 0 0;
+    border-radius: 5px;
+}
+
+.list-event-detail{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    margin: 0 0 0 0;
+    padding: 10 0 10 0;
+}
+
+.component-list-event-detail{
+    display: flex;
+    width: 80%;
+    border-bottom: 1px solid black;
+    height: 50px;
+    justify-content: start;
+    align-items: center;
+    margin: 00 0 10 0;
+
+}
+
+.component-buy-event-list{
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:  #637be9;
+    font-size: larger;
+    border-radius: 5px;
+    width: 180px;
+    height: 50px;
+    border: 1px solid  #637be9;
+    justify-content: center;
+    align-items: center;
+}
+
+.component-text-event-detail{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-inline-end: 10px;
+}
+li#title-list-event-detail{
+    justify-content: center;
+}
+
+.title-event-detail{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-group .submit{
+    height: 45px;
+    border: 0px;
+    border-radius: 5px;
+    background-color:  #637be9;
+    margin-bottom: 0px;
+    font-size: large;
+
+}

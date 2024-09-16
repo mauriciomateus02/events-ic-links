@@ -36,7 +36,7 @@ class EventController extends Controller
             ->get();
         }
         else{
-            $events = Event::orderBy('created_at','desc')->take(5)->get();
+            $events = Event::orderBy('created_at','desc')->take(10)->get();
         }
 
         return view('home',['events'=>$events,'search'=>$search]);

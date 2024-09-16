@@ -1,0 +1,47 @@
+
+.container-events{
+    width: 100%;
+    min-height: 300px;
+}
+
+.swiper-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    height: auto;
+
+}
+
+.container-card {
+    width: 100%;
+    text-align: center;
+}
+
+.swiper-wrapper{
+    padding-left: 20px;
+}
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;   /* Cor dos bullets inativos */
+    margin: 0 5px;            /* Espaçamento entre os bullets */
+    opacity: 1;              /* Deixa o bullet mais visível */
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #637be9; /* Cor do bullet ativo */
+}
+
+.position-pagination{
+    bottom: auto !important;
+    margin-top: 5px;
+}
+.position-button{
+    top: 104% !important;
+    position: relative;
+}

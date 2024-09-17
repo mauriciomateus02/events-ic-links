@@ -2,7 +2,7 @@
     <x-authentication-card style="background-color: black;">
         <x-slot name="logo">
             <div class="logo-login" style="width: 100%; height: 100%;">
-                <a href="/"><img src="../images/image-login.png" width="200px" height="200px" alt=""></a>
+                <a href="/"><img src="{{asset('images/campuslink.png')}}" width="200px" height="200px" alt=""></a>
             </div>
         </x-slot>
 

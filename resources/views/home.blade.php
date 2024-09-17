@@ -41,8 +41,7 @@
                                             <div class="container-card">
                                                 <img src="{{ $event->image_path }}">
                                                 <p class="badge computacao">{{ $event->name }}</p>
-                                                <p class="date">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}
-                                                </p>
+                                                <p class="date">{{ $event->city }}</p>
                                                 <a href="{{Route('event',[$event->id])}}" class="card-button material-symbols-outlined">arrow_forward</a>
                                             </div>
                                         </div>
@@ -72,9 +71,8 @@
                                     <div class="swiper-slide">
                                         <div class="container-card">
                                             <img src="{{ $event->image_path }}">
-                                            <p class="date">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}
-                                            </p>
-                                            <p>{{ $event->name }}</p>
+                                            <p class="badge computacao">{{ $event->name }}</p>
+                                            <p class="date">{{ $event->city }}</p>
                                             <a href="{{Route('event',[$event->id])}}" class="card-button material-symbols-outlined">arrow_forward</a>
                                         </div>
                                     </div>

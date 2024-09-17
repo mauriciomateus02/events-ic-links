@@ -9,7 +9,7 @@
 
 <body>
     <header>
-        <div id="logo"><a href="{{ url('/') }}"><img src="{{ asset('images/pilar-logo.png') }}" width="150px"
+        <div id="logo"><a href="{{ url('/') }}"><img src="{{ asset('images/campuslink.png') }}" width="200px"
                     height="95px"></a></div>
         <ul>
             <li class="campo-search">

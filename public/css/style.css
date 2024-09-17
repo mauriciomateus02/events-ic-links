@@ -109,11 +109,10 @@ li#search svg{
 }
 
 #logo{
-    width: 100px;
+    width: 200px;
     height: 100px;
     float: left;
     margin-left: 40px;
-
 }
 
 #logo svg{
@@ -273,6 +272,7 @@ input#search-home-page{
     justify-content: start;
     align-items: end;
     height: 70;
+    white-space: nowrap;
 }
 
 /*----Responsividade----*/

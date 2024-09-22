@@ -312,6 +312,49 @@ input#search-home-page{
 }
 
 
+nav {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 3px;
+    margin-top: 10px;
+    height: auto;
+    width: 130px;
+    top: 8%;
+    overflow: hidden;
+}
+nav.active {
+    display: block;
+}
+
+.menu-flutuante{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+}
+
+.menu-flutuante li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 35px;
+    border-bottom: 0.5px rgb(164, 164, 164) solid;
+
+    overflow: hidden;
+    margin: 0;
+}
+.menu-flutuante li a{
+    justify-self: center;
+}
+
+.menu-flutuante li#exit{
+    height: auto;
+}
+
 /*----Responsividade----*/
 
 @media (min-width: 1920px) {

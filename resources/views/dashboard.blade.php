@@ -91,4 +91,5 @@
     </div>
 </div>
 </div>
+<script src="{{ asset('js/home-page.js') }}"></script>
 @endsection()

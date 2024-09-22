@@ -20,8 +20,7 @@
                 </form>
             </li>
             <hr>
-            <li id="calendar"><a href="{{ url('/') }}"><x-icons.home
-                        style="width: 25px; margin-right: 3px" />
+            <li id="calendar"><a href="{{ url('/') }}"><x-icons.home style="width: 25px; margin-right: 3px" />
                     <p>Home</p>
                 </a></li>
             <hr>
@@ -61,9 +60,25 @@
                 </li>
                 <hr> --}}
                 <li id="shop">
-                    <a href="#"><x-icons.cog style="width: 25px; margin-right: 3px" />
+                    <a href="#" id="toggleNav"><x-icons.cog style="width: 25px; margin-right: 3px" />
                         <p>Olá, {{ auth()->user()->name }}</p>
                     </a>
+
+                    <nav id="navMenu">
+                        <ul class="menu-flutuante">
+                            <li><a href="#">Mudar Senha</a></li>
+                            <li>
+                                <form class="form-main" action="{{ url('/logout') }}" method="POST">
+                                    @csrf
+                                    <a href="/logout"
+                                        onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                                        Sair
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </nav>
                 </li>
 
             @endauth
@@ -77,5 +92,22 @@
         <p>Developed by IC reservas &copy; 2024</p>
     </footer>
 </body>
+
+<script>
+    const toggleNav = document.getElementById('toggleNav');
+    const navMenu = document.getElementById('navMenu');
+
+    toggleNav.addEventListener('click', function(event) {
+        event.preventDefault();
+        navMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', function(event) {
+
+        if (!navMenu.contains(event.target) && !toggleNav.contains(event.target)) {
+            navMenu.classList.remove('active'); 
+        }
+    });
+</script>
 
 </html>

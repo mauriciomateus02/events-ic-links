@@ -1,21 +1,28 @@
 let tamanho = document.getElementsByClassName("main-body")[0];
 let home = document.getElementsByClassName("home-page")[0];
-
-let event = document.getElementsByClassName("events-body")[0];
-
+let evento = document.getElementsByClassName("events-body")[0];
+let dashboard = document.getElementsByClassName("dashboard-component-event")[0];
 
 document.addEventListener('DOMContentLoaded', function() {
-    if (home) {  // Verifica se o elemento "home" existe
+    if (home) { 
         tamanho.style.maxWidth = 'initial';
         tamanho.style.minHeight = 'initial';
-        //tamanho.style.height = '110% !important';
+
     }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    if (event) {  // Verifica se o elemento "home" existe
+    if (evento) { 
         tamanho.style.maxWidth = 'initial';
         tamanho.style.minHeight = 'initial';
-        //tamanho.style.height = '110% !important';
+
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (dashboard) { 
+        tamanho.style.maxWidth = 'initial';
+        tamanho.style.minHeight = 'initial';
+
     }
 });

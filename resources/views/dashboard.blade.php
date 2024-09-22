@@ -13,18 +13,17 @@
 
 <div class="dashboard-component-event">
     <div class="list-events-dashboard">
-        <h1>Meus Eventos Cadastrados</h1>
+        <h1>Meus eventos cadastrados</h1>
         @if($events->isEmpty())
-        <p>Você ainda não tem eventos cadastrados</p>
+        <p>Você ainda não criou nenhum evento</p>
         @else
         <table class="list-events">
             <thead>
                 <th>Nome</th>
-                <th>Cidade</th>
+                <th>Local</th>
                 <th>Data</th>
                 <th>Público</th>
-                <th>Arrecadado</th>
-                <th>ações</th>
+                <th>Ações</th>
             </thead>
             <tbody>
                 @foreach($events as $event)
@@ -35,7 +34,6 @@
                     <td>{{$event->city}}</td>
                     <td>{{\Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</td>
                     <td>{{count($event->users)." "."/"." ".$event->max_capacity}}</td>
-                    <td>R$ {{$event->price*count($event->users)}}</td>
                     <td class="button-action-list-event">
                         <form action="/event/edit/{{$event->id}}" method="GET">
                             @csrf
@@ -55,16 +53,16 @@
     </div>
 
     <div class="list-events-dashboard">
-        <h1>Eventos Reservados</h1>
+        <h1>Minhas inscrições</h1>
         @if($eventsUser->isEmpty())
-        <p>Você ainda não fez reserva em eventos</p>
+        <p>Você ainda não se inscreveu em nenhum evento</p>
 
         @else
         <table class="list-events">
 
             <thead>
                 <th>Nome</th>
-                <th>Cidade</th>
+                <th>Local</th>
                 <th>Data</th>
                 <th>Preço</th>
                 <th>ações</th>

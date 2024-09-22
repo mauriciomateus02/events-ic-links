@@ -29,7 +29,7 @@
             <div class="events" style="margin-top: -20px;">
                 @if (empty($search) == true)
                     <div class="title-list-event">
-                        <h1 class="font-titulo">Eventos populares</h1>
+                        <h1 class="font-titulo">EVENTOS POPULARES</h1>
                         <hr class="linha">
                     </div>
                     @if (!is_null($events))
@@ -38,11 +38,13 @@
                                 <div class="swiper-wrapper">
                                     @foreach ($events as $event)
                                         <div class="swiper-slide">
-                                            <div class="container-card">
-                                                <img src="{{ $event->image_path }}">
-                                                <p class="badge computacao">{{ $event->name }}</p>
-                                                <p class="date">{{ $event->city }}</p>
-                                                <a href="{{Route('event',[$event->id])}}" class="card-button material-symbols-outlined">arrow_forward</a>
+                                            <div class="card-item">
+                                                <a href="{{Route('event',[$event->id])}}" class="card-link">
+                                                    <img src="{{ $event->image_path }}" alt="" class="card-image">
+                                                    <p class="badge">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                                                    <h2 class="card-title">{{ $event->name }}</h2>
+                                                    <button class="card-button material-symbols-outlined">arrow_forward</button>
+                                                </a>
                                             </div>
                                         </div>
                                     @endforeach
@@ -60,7 +62,7 @@
                         <p>Não há eventos</p>
                     @endif
                     <div class="title-list-event">
-                        <h1 class="font-titulo">Acontecendo Hoje</h1>
+                        <h1 class="font-titulo">ACONTECENDO HOJE</h1>
                         <hr class="linha">
                     </div>
                     @if (!is_null($events))
@@ -69,11 +71,13 @@
                             <div class="swiper-wrapper">
                                 @foreach ($events as $event)
                                     <div class="swiper-slide">
-                                        <div class="container-card">
-                                            <img src="{{ $event->image_path }}">
-                                            <p class="badge computacao">{{ $event->name }}</p>
-                                            <p class="date">{{ $event->city }}</p>
-                                            <a href="{{Route('event',[$event->id])}}" class="card-button material-symbols-outlined">arrow_forward</a>
+                                        <div class="card-item">
+                                            <a href="{{Route('event',[$event->id])}}" class="card-link">
+                                                <img src="{{ $event->image_path }}" alt="" class="card-image">
+                                                <p class="badge">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                                                <h2 class="card-title">{{ $event->name }}</h2>
+                                                <button class="card-button material-symbols-outlined">arrow_forward</button>
+                                            </a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -90,6 +94,74 @@
                     @else
                         <p>Não há eventos</p>
                     @endif
+                @else
+                <div class="title-list-event">
+                    <h1 class="font-titulo">EVENTOS POPULARES</h1>
+                    <hr class="linha">
+                </div>
+                @if (!is_null($events))
+                    <div class="container-events">
+                        <div class="swiper-container swiper1">
+                            <div class="swiper-wrapper">
+                                @foreach ($events as $event)
+                                    <div class="swiper-slide">
+                                        <div class="card-item">
+                                            <a href="{{Route('event',[$event->id])}}" class="card-link">
+                                                <img src="{{ $event->image_path }}" alt="" class="card-image">
+                                                <p class="badge">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                                                <h2 class="card-title">{{ $event->name }}</h2>
+                                                <button class="card-button material-symbols-outlined">arrow_forward</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                            </div>
+
+                            <div class="swiper-pagination position-pagination swiper-pagination1"></div>
+                            <!-- Botões de navegação -->
+                            <div class="swiper-button-next swiper-button-next1"></div>
+                            <div class="swiper-button-prev swiper-button-prev1"></div>
+                            <!-- Paginação -->
+                        </div>
+                    </div>
+                @else
+                    <p>Não há eventos</p>
+                @endif
+                <div class="title-list-event">
+                    <h1 class="font-titulo">ACONTECENDO HOJE</h1>
+                    <hr class="linha">
+                </div>
+                @if (!is_null($events))
+                <div class="container-events">
+                    <div class="swiper-container swiper2">
+                        <div class="swiper-wrapper">
+                            @foreach ($events as $event)
+                                <div class="swiper-slide">
+                                    <div class="card-item">
+                                        <a href="{{Route('event',[$event->id])}}" class="card-link">
+                                            <img src="{{ $event->image_path }}" alt="" class="card-image">
+                                            <p class="badge">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                                            <h2 class="card-title">{{ $event->name }}</h2>
+                                            <button class="card-button material-symbols-outlined">arrow_forward</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+
+                        <div class="swiper-pagination position-pagination swiper-pagination2"></div>
+                        <!-- Botões de navegação -->
+                        <div class="swiper-button-next  position-button swiper-button-next2"></div>
+                        <div class="swiper-button-prev  position-button swiper-button-prev2"></div>
+                        <!-- Paginação -->
+                    </div>
+                </div>
+                @else
+                    <p>Não há eventos</p>
+                @endif
+
                 @endif
             </div>
         </div>
@@ -98,5 +170,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/slide-events.js') }}"></script>
+    <script src="{{ asset('js/home-page.js') }}"></script>
+
 
 @endsection()

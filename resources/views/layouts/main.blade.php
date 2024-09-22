@@ -20,6 +20,11 @@
                 </form>
             </li>
             <hr>
+            <li id="calendar"><a href="{{ url('/') }}"><x-icons.home
+                        style="width: 25px; margin-right: 3px" />
+                    <p>Home</p>
+                </a></li>
+            <hr>
             <li><a href="{{ url('/event') }}"><x-icons.presentation-chart-line style="width: 25px; margin-right: 3px" />
                     <p>Eventos</p>
                 </a></li>

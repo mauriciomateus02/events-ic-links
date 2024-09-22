@@ -20,18 +20,18 @@ var swiper = new Swiper('.swiper1', {
         },
         768: {
             slidesPerView: 4,
-            spaceBetween: 20,
+            spaceBetween: 10,
         },
         1024: {
-            slidesPerView: 6,
-            spaceBetween: 10,
+            slidesPerView: 5,
+            spaceBetween: 15,
         },
     }
 });
 
 var swiper = new Swiper('.swiper2', {
     slidesPerView: 5,
-    spaceBetween: 15,
+    spaceBetween: 5,
     loop: false,
     navigation: {
         nextEl: '.swiper-button-next2',
@@ -51,11 +51,11 @@ var swiper = new Swiper('.swiper2', {
         },
         768: {
             slidesPerView: 4,
-            spaceBetween: 20,
+            spaceBetween: 10,
         },
         1024: {
-            slidesPerView: 6,
-            spaceBetween: 10,
+            slidesPerView: 5,
+            spaceBetween: 5,
         },
     }
 });

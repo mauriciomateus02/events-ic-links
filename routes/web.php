@@ -23,6 +23,6 @@ Route::get('/event/edit/{id}',[EventController::class,'edit'])->middleware('auth
 
 Route::put('/event/update/{id}',[EventController::class, 'update'])->middleware('auth');
 
-Route::post('/event/buy/{id}',[EventController::class,'buyEvent'])->middleware('auth');
+Route::post('/event/buy/{id}',[EventController::class,'buyEvent'])->name('event.reservar')->middleware('auth');
 
 Route::delete('/event/leave/{id}',[EventController::class,'leaveEvent'])->middleware('auth');

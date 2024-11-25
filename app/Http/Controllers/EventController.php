@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Mail\MeuEmail;
+use Illuminate\Support\Facades\Mail;
 
 class EventController extends Controller
 {
@@ -156,6 +158,9 @@ class EventController extends Controller
         }
         $user->eventsAsParticipant()->attach($id);
 
+
+        $this->enviarEmail($user_logged->email,$event);
+
         return redirect('/dashboard')->with('msg','Reserva realizado em: '.$event->name);
     }
 
@@ -176,6 +181,16 @@ class EventController extends Controller
 
     }
 
+
+    public function enviarEmail($email_usuario,$event)
+    {
+        $dados = [
+            'titulo' => 'Inscrição no Evento: '.$event->name,
+            'mensagem' => 'Sua inscrição foi realizada com sucesso. a data do evento é: '.\Carbon\Carbon::parse($event->date)->format('d/m/Y')
+        ];
+
+        Mail::to(string($email_usuario))->send(new MeuEmail($dados));
+    }
 
 
 }

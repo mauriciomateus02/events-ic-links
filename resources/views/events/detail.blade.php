@@ -39,7 +39,7 @@
             </li>
             <form class="form-group" action="/event/buy/{{$event->id}}" method="POST">
                 @csrf
-                <input id="reservButton" type="submit" value="Reservar Vaga" class="submit">
+                <button id="reservButton" class="submit">Reservar Vaga</button>
             </form>
 
         </ul>

@@ -61,7 +61,7 @@
                 <hr> --}}
                 <li id="shop">
                     <a href="#" id="toggleNav"><x-icons.cog style="width: 25px; margin-right: 3px" />
-                        <p>Olá, {{ auth()->user()->name }}</p>
+                        <p>Olá, {{ explode(' ',trim(auth()->user()->name))[0] }}</p>
                     </a>
 
                     <nav id="navMenu">
@@ -105,7 +105,7 @@
     document.addEventListener('click', function(event) {
 
         if (!navMenu.contains(event.target) && !toggleNav.contains(event.target)) {
-            navMenu.classList.remove('active'); 
+            navMenu.classList.remove('active');
         }
     });
 </script>

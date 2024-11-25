@@ -89,3 +89,7 @@ li#title-list-event-detail{
     font-size: large;
 
 }
+.submit:hover{
+    background-color: rgb(121, 57, 12);
+    color: white;
+}

@@ -93,3 +93,11 @@ li#title-list-event-detail{
     background-color: rgb(121, 57, 12);
     color: white;
 }
+.no-hover{
+    background-color: grey !important;
+    color: white;
+}
+.no-hover:hover {
+     /* Desativa interação */
+    background-color: gray; /* Remove o efeito de hover */
+}

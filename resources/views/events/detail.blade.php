@@ -2,6 +2,11 @@
 <link rel="stylesheet" href="{{ asset('css/event_detail_style.css') }}">
 
 @section('content')
+
+@php
+    $dataMaior = (\Carbon\Carbon::today()->gt($event->date))? true : false;
+@endphp
+
 <div class="events-details-page">
     <div class="container-event-details">
         <img id="image-event-detail" src="../{{$event->image_path}}">
@@ -39,7 +44,7 @@
             </li>
             <form class="form-group" action="/event/buy/{{$event->id}}" method="POST">
                 @csrf
-                <button id="reservButton" class="submit">Reservar Vaga</button>
+                <button id="reservButton" @class(['submit', ($dataMaior)?'no-hover':'']) {{($dataMaior)?'disabled' : ''}}>Reservar Vaga</button>
             </form>
 
         </ul>

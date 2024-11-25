@@ -189,7 +189,7 @@ class EventController extends Controller
             'mensagem' => 'Sua inscrição foi realizada com sucesso. a data do evento é: '.\Carbon\Carbon::parse($event->date)->format('d/m/Y')
         ];
 
-        Mail::to(string($email_usuario))->send(new MeuEmail($dados));
+        Mail::to($email_usuario)->send(new MeuEmail($dados));
     }
 
 

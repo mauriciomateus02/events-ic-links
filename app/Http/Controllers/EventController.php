@@ -59,7 +59,7 @@ class EventController extends Controller
 
         $events_toDay = Event::where('date',$today)->get();
 
-        return view('home',['events'=>$events,'search'=>$search,'events_today'=>$events_toDay]);
+        return view('home',['events'=>$events,'search'=>$search,'events_today'=> $events_toDay]);
 
 
     }

@@ -40,13 +40,15 @@ img#image-event-detail{
 }
 
 .component-list-event-detail{
-    display: flex;
+    display: flex !important;
     width: 80%;
     border-bottom: 1px solid black;
     height: 50px;
-    justify-content: start;
-    align-items: center;
-    margin: 00 0 10 0;
+    justify-content: start !important;
+    align-items: center !important;
+    text-align: center;
+    margin: 00 0 10 0;font-size: large;
+    font-weight: bold;
 
 }
 

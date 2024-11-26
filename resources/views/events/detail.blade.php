@@ -16,31 +16,31 @@
             </li>
             <li class="component-list-event-detail">
                 <x-icons.star style="width: 25px; margin-right: 3px; color: #fac753;" />
-                <p class="component-text-event-detail">{{$user->name}}</p>
+                {{$user->name}}
             </li>
             <li class="component-list-event-detail">
                 <x-icons.location-marker style="width: 25px; margin-right: 3px; color: #fac753;" />
-                <p class="component-text-event-detail">{{$event->city}}</p>
+                {{$event->city}}
             </li>
             <li class="component-list-event-detail">
                 <x-icons.currency-dollar style="width: 25px; margin-right: 3px; color: #fac753;" />
-                <p class="component-text-event-detail"> {{$event->price}}</p>
+                 {{$event->price}}
             </li>
             <li class="component-list-event-detail">
                 <x-icons.clipboard-list style="width: 25px; margin-right: 3px; color: #fac753;" />
-                <p class="component-text-event-detail">{{$event->max_capacity-count($event->users)}} vagas</p>
+                {{$event->max_capacity-count($event->users)}} vagas
             </li>
             @if(empty($event->items) != TRUE)
             <li class="component-list-event-detail">
                 <x-icons.sparkles style="width: 25px; margin-right: 3px; color: #fac753;" />
                 @foreach($event->items as $item)
-                <p class="component-text-event-detail">{{$item}}.</p>
+                {{$item}}
                 @endforeach()
             </li>
             @endif
             <li class="component-list-event-detail">
                 <x-icons.annotation style="width: 25px; margin-right: 3px; color: #fac753;" />
-                <p class="component-text-event-detail">{{$event->description}}</p>
+                {{$event->description}}
             </li>
             <form class="form-group" action="/event/buy/{{$event->id}}" method="POST">
                 @csrf

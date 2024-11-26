@@ -172,8 +172,14 @@ class EventController extends Controller
         }
 
         else if($event->user_id == $user_logged->id){
-            return redirect('/')->with('err','Não é possivel realizar a reserva de vaga, você é o proprietário desse evento');
+            return redirect('/')->with('err','Não é possivel realizar a reserva de vaga, você é o proprietário desse evento!');
         }
+
+        if($user->eventsAsParticipant->where('date',$event->date)){
+            return redirect('/')->with('err','Você já está cadastrado em um evento no dia '.\Carbon\Carbon::parse($event->date)->format('d/m/Y').'!');
+        }
+
+
         $user->eventsAsParticipant()->attach($id);
 
 
@@ -192,7 +198,7 @@ class EventController extends Controller
         if($event->users->contains($user_logged->id)){
             $user->eventsAsParticipant()->detach($id);
 
-            return redirect('/dashboard')->with('msg','Reserva'.'do evento: '.$event->name.' foi cancelada!');
+            return redirect('/dashboard')->with('msg','Reserva'.'em: '.$event->name.' foi cancelada!');
         }
 
         return redirect('/dashboard')->with('err','Você não possui reserva nesse evento.');

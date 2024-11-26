@@ -26,7 +26,7 @@
                     </thead>
                     <tbody>
                         @foreach ($events as $event)
-                            <tr style="text-align: center;">
+                            <tr style="text-align: start;">
                                 <td>{{ $event->name }}</td>
 
                                 <td>{{ $event->city }}</td>
@@ -41,8 +41,32 @@
                                     <form action="/event/{{ $event->id }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="dashboard-action-delete"><x-icons.trash
+                                        <button type="button" class="dashboard-action-delete" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal-{{ $event->id }}"><x-icons.trash
                                                 style="width: 25px; margin-right: 3px; color: black" /></button>
+
+                                        <div class="modal fade" id="deleteModal-{{ $event->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cancelar
+                                                            Evento</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Deseja realmente cancelar seu evento:
+                                                        {{ $event->name }}?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">NÃO</button>
+                                                        <button type="submit" class="btn btn-primary">SIM</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </form>
                                 </td>
                             </tr>

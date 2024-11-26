@@ -190,7 +190,6 @@ a{
 /* -- create event --*/
 
 li#calendar{
-
     width: 180px;
 }
 
@@ -353,6 +352,10 @@ nav.active {
 
 .menu-flutuante li#exit{
     height: auto;
+}
+
+.cabecalho{
+    margin-bottom: 20px;
 }
 
 /*----Responsividade----*/

@@ -15,7 +15,7 @@ Route::get('/event/{id}',[EventController::class,'index'])->name('event');
 
 Route::delete('/event/{id}',[EventController::class,'destroy'])->middleware(('auth'));
 
-Route::post('/event',[EventController::class,'store']);
+Route::post('/event',[EventController::class,'store'])->name('event.store');
 
 Route::get('/dashboard',[EventController::class,'board'])->middleware('auth');
 

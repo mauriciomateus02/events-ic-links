@@ -65,11 +65,11 @@
                         <h1 class="font-titulo">ACONTECENDO HOJE</h1>
                         <hr class="linha">
                     </div>
-                    @if (!is_null($events))
+                    @if (!is_null($events_today))
                     <div class="container-events">
                         <div class="swiper-container swiper2">
                             <div class="swiper-wrapper">
-                                @foreach ($events as $event)
+                                @foreach ($events_today as $event)
                                     <div class="swiper-slide">
                                         <div class="card-item">
                                             <a href="{{Route('event',[$event->id])}}" class="card-link">

@@ -19,6 +19,10 @@
     padding: 10 10 10 10;
 }
 
+.rodape{
+    margin-top: 30px;
+}
+
 img#image-event-detail{
     width: 450px;
     height: 340px;

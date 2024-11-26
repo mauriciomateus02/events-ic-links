@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
-    <header>
+    <header class="cabecalho">
         <div id="logo"><a href="{{ url('/') }}"><img src="{{ asset('images/campuslink.png') }}" width="200px"
                     height="95px"></a></div>
         <ul>
@@ -20,30 +21,30 @@
                 </form>
             </li>
             <hr>
-            <li id="calendar"><a href="{{ url('/') }}"><x-icons.home style="width: 25px; margin-right: 3px" />
-                    <p>Home</p>
+            <li id="calendar"><a href="{{ url('/') }}"><x-icons.home style="width: 25px; margin-right: 3px; text-align: center" />
+                    Home
                 </a></li>
             <hr>
             <li><a href="{{ url('/event') }}"><x-icons.presentation-chart-line style="width: 25px; margin-right: 3px" />
-                    <p>Eventos</p>
+                    Eventos
                 </a></li>
             <hr>
             <li id="calendar"><a href="{{ url('/event/create') }}"><x-icons.calendar
                         style="width: 25px; margin-right: 3px" />
-                    <p>Cadastar Evento</p>
+                    Cadastar Evento
                 </a></li>
 
             <hr>
             @auth
                 <li id="shop"><a href="{{ url('/dashboard') }}"><x-icons.collection
                             style="width: 25px; margin-right: 3px" />
-                        <p>Meus Eventos</p>
+                        Meus Eventos
                     </a></li>
                 <hr>
             @endauth
             @guest
                 <li id="shop"><a href="{{ url('/login') }}"><x-icons.login style="width: 25px; margin-right: 3px" />
-                        <p>Entrar</p>
+                        Entrar
                     </a></li>
             @endguest
             @auth
@@ -61,7 +62,7 @@
                 <hr> --}}
                 <li id="shop">
                     <a href="#" id="toggleNav"><x-icons.cog style="width: 25px; margin-right: 3px" />
-                        <p>Olá, {{ explode(' ',trim(auth()->user()->name))[0] }}</p>
+                        Olá, {{ explode(' ',trim(auth()->user()->name))[0] }}
                     </a>
 
                     <nav id="navMenu">
@@ -88,9 +89,10 @@
     <div class="main-body">
         @yield('content')
     </div>
-    <footer>
+    <footer style="margin-top: 10px">
         <p>Developed by IC reservas &copy; 2024</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 <script>

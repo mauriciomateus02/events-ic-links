@@ -22,15 +22,31 @@ class EventController extends Controller
 
     public function show(){
 
-        $events = Event::all();
+        $filter = request('filtro_eventos');
 
-        return view('event',['events'=>$events]);
+        if(empty($filter)!= TRUE){
+            $events = [];
+            $events_filter = Event::all();
+
+            foreach($events_filter as $event){
+                if(in_array($filter,$event->items)){
+                    array_push($events,$event);
+                }
+            }
+        }
+        else{
+            $events = Event::all();
+        }
+
+        return view('event',['events'=>$events,'filter'=>$filter ]);
     }
 
 
     public function home(){
 
         $search = request('search');
+
+        $today = \Carbon\Carbon::today();
 
         if(empty($search)!= TRUE){
 
@@ -41,7 +57,9 @@ class EventController extends Controller
             $events = Event::orderBy('created_at','desc')->take(10)->get();
         }
 
-        return view('home',['events'=>$events,'search'=>$search]);
+        $events_toDay = Event::where('date',$today)->get();
+
+        return view('home',['events'=>$events,'search'=>$search,'events_today'=>$events_toDay]);
 
 
     }

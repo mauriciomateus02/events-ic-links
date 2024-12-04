@@ -142,4 +142,13 @@
     align-self: center;
     font-weight: bold;
     font-size: larger;
+   
+}
+
+.empty-home{
+    margin-top: 20px;
+    margin-bottom: 180px;
+    font-weight: bolder;
+    font-size: larger;
+
 }

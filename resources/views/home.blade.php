@@ -1,9 +1,9 @@
 @extends('layouts.main')
 <link rel="stylesheet" href="{{ asset('css/event_container_style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/slide-events.css') }}">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 @section('content')
-
     <script src="{{ asset('js/script.js') }}"></script>
 
     <div class="main-body">
@@ -32,18 +32,20 @@
                         <h1 class="font-titulo">EVENTOS POPULARES</h1>
                         <hr class="linha">
                     </div>
-                    @if (!is_null($events))
+                    @if (!$events->isEmpty())
                         <div class="container-events">
                             <div class="swiper-container swiper1">
                                 <div class="swiper-wrapper">
                                     @foreach ($events as $event)
                                         <div class="swiper-slide">
                                             <div class="card-item">
-                                                <a href="{{Route('event',[$event->id])}}" class="card-link">
+                                                <a href="{{ Route('event', [$event->id]) }}" class="card-link">
                                                     <img src="{{ $event->image_path }}" alt="" class="card-image">
-                                                    <p class="badge">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                                                    <p class="badge">
+                                                        {{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
                                                     <h2 class="card-title">{{ $event->name }}</h2>
-                                                    <button class="card-button material-symbols-outlined">arrow_forward</button>
+                                                    <button
+                                                        class="card-button material-symbols-outlined">arrow_forward</button>
                                                 </a>
                                             </div>
                                         </div>
@@ -59,108 +61,134 @@
                             </div>
                         </div>
                     @else
-                        <p>Não há eventos</p>
+                        <p class="empty-home">Não há eventos</p>
                     @endif
+
                     <div class="title-list-event">
                         <h1 class="font-titulo">ACONTECENDO HOJE</h1>
                         <hr class="linha">
                     </div>
-                    @if (!is_null($events_today))
-                    <div class="container-events">
-                        <div class="swiper-container swiper2">
-                            <div class="swiper-wrapper">
-                                @foreach ($events_today as $event)
-                                    <div class="swiper-slide">
-                                        <div class="card-item">
-                                            <a href="{{Route('event',[$event->id])}}" class="card-link">
-                                                <img src="{{ $event->image_path }}" alt="" class="card-image">
-                                                <p class="badge">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
-                                                <h2 class="card-title">{{ $event->name }}</h2>
-                                                <button class="card-button material-symbols-outlined">arrow_forward</button>
-                                            </a>
+                    @if (!$events_today->isEmpty())
+                        <div class="container-events">
+                            <div class="swiper-container swiper2">
+                                <div class="swiper-wrapper">
+                                    @foreach ($events_today as $event)
+                                        <div class="swiper-slide">
+                                            <div class="card-item">
+                                                <a href="{{ Route('event', [$event->id]) }}" class="card-link">
+                                                    <img src="{{ $event->image_path }}" alt="" class="card-image">
+                                                    <p class="badge">
+                                                        {{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                                                    <h2 class="card-title">{{ $event->name }}</h2>
+                                                    <button
+                                                        class="card-button material-symbols-outlined">arrow_forward</button>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
 
+                                </div>
+
+                                <div class="swiper-pagination position-pagination swiper-pagination2"></div>
+                                <!-- Botões de navegação -->
+                                <div class="swiper-button-next  position-button swiper-button-next2"></div>
+                                <div class="swiper-button-prev  position-button swiper-button-prev2"></div>
+                                <!-- Paginação -->
                             </div>
-
-                            <div class="swiper-pagination position-pagination swiper-pagination2"></div>
-                            <!-- Botões de navegação -->
-                            <div class="swiper-button-next  position-button swiper-button-next2"></div>
-                            <div class="swiper-button-prev  position-button swiper-button-prev2"></div>
-                            <!-- Paginação -->
                         </div>
-                    </div>
                     @else
-                        <p>Não há eventos</p>
+                        <p class="empty-home">Não há eventos</p>
                     @endif
                 @else
-                <div class="title-list-event">
-                    <h1 class="font-titulo">EVENTOS POPULARES</h1>
-                    <hr class="linha">
-                </div>
-                @if (!is_null($events))
-                    <div class="container-events">
-                        <div class="swiper-container swiper1">
-                            <div class="swiper-wrapper">
-                                @foreach ($events as $event)
-                                    <div class="swiper-slide">
-                                        <div class="card-item">
-                                            <a href="{{Route('event',[$event->id])}}" class="card-link">
-                                                <img src="{{ $event->image_path }}" alt="" class="card-image">
-                                                <p class="badge">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
-                                                <h2 class="card-title">{{ $event->name }}</h2>
-                                                <button class="card-button material-symbols-outlined">arrow_forward</button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endforeach
-
-                            </div>
-
-                            <div class="swiper-pagination position-pagination swiper-pagination1"></div>
-                            <!-- Botões de navegação -->
-                            <div class="swiper-button-next swiper-button-next1"></div>
-                            <div class="swiper-button-prev swiper-button-prev1"></div>
-                            <!-- Paginação -->
-                        </div>
+                    <div class="title-list-event">
+                        <h1 class="font-titulo">EVENTOS POPULARES</h1>
+                        <hr class="linha">
                     </div>
-                @else
-                    <p>Não há eventos</p>
-                @endif
-                <div class="title-list-event">
-                    <h1 class="font-titulo">ACONTECENDO HOJE</h1>
-                    <hr class="linha">
-                </div>
-                @if (!is_null($events))
-                <div class="container-events">
-                    <div class="swiper-container swiper2">
-                        <div class="swiper-wrapper">
-                            @foreach ($events as $event)
-                                <div class="swiper-slide">
-                                    <div class="card-item">
-                                        <a href="{{Route('event',[$event->id])}}" class="card-link">
-                                            <img src="{{ $event->image_path }}" alt="" class="card-image">
-                                            <p class="badge">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
-                                            <h2 class="card-title">{{ $event->name }}</h2>
-                                            <button class="card-button material-symbols-outlined">arrow_forward</button>
-                                        </a>
+                    @if (!empty($events))
+                        @if (!$events->isEmpty())
+                            <div class="container-events">
+                                <div class="swiper-container swiper1">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($events as $event)
+                                            <div class="swiper-slide">
+                                                <div class="card-item">
+                                                    <a href="{{ Route('event', [$event->id]) }}" class="card-link">
+                                                        <img src="{{ $event->image_path }}" alt=""
+                                                            class="card-image">
+                                                        <p class="badge">
+                                                            {{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                                                        <h2 class="card-title">{{ $event->name }}</h2>
+                                                        <button
+                                                            class="card-button material-symbols-outlined">arrow_forward</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
                                     </div>
+
+                                    <div class="swiper-pagination position-pagination swiper-pagination1"></div>
+                                    <!-- Botões de navegação -->
+                                    <div class="swiper-button-next swiper-button-next1"></div>
+                                    <div class="swiper-button-prev swiper-button-prev1"></div>
+                                    <!-- Paginação -->
                                 </div>
-                            @endforeach
-
+                            </div>
+                        @else
+                            <div class="events-body-empty">
+                                <p class="not-found">Não há eventos disponiveis.</p>
+                            </div>
+                        @endif
+                    @else
+                        <div class="events-body-empty">
+                            <p class="not-found">Não há eventos disponiveis.</p>
                         </div>
+                    @endif
 
-                        <div class="swiper-pagination position-pagination swiper-pagination2"></div>
-                        <!-- Botões de navegação -->
-                        <div class="swiper-button-next  position-button swiper-button-next2"></div>
-                        <div class="swiper-button-prev  position-button swiper-button-prev2"></div>
-                        <!-- Paginação -->
+                    <div class="title-list-event">
+                        <h1 class="font-titulo">ACONTECENDO HOJE</h1>
+                        <hr class="linha">
                     </div>
-                </div>
-                @else
-                    <p>Não há eventos</p>
-                @endif
+                    @if (!empty($events_today))
+                        @if (!$events_today->isEmpty())
+                            <div class="container-events">
+                                <div class="swiper-container swiper2">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($events as $event)
+                                            <div class="swiper-slide">
+                                                <div class="card-item">
+                                                    <a href="{{ Route('event', [$event->id]) }}" class="card-link">
+                                                        <img src="{{ $event->image_path }}" alt=""
+                                                            class="card-image">
+                                                        <p class="badge">
+                                                            {{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                                                        <h2 class="card-title">{{ $event->name }}</h2>
+                                                        <button
+                                                            class="card-button material-symbols-outlined">arrow_forward</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+
+                                    <div class="swiper-pagination position-pagination swiper-pagination2"></div>
+                                    <!-- Botões de navegação -->
+                                    <div class="swiper-button-next  position-button swiper-button-next2"></div>
+                                    <div class="swiper-button-prev  position-button swiper-button-prev2"></div>
+                                    <!-- Paginação -->
+                                </div>
+                            </div>
+                        @else
+                            <div class="events-body-empty">
+                                <p class="not-found">Não há eventos disponiveis.</p>
+                            </div>
+                        @endif
+                    @else
+                        <div class="events-body-empty">
+                            <p class="not-found">Não há eventos disponiveis.</p>
+                        </div>
+                    @endif
 
                 @endif
             </div>
@@ -171,6 +199,4 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/slide-events.js') }}"></script>
     <script src="{{ asset('js/home-page.js') }}"></script>
-
-
 @endsection()

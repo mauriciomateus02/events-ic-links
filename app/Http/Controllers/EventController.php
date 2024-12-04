@@ -51,13 +51,16 @@ class EventController extends Controller
         if(empty($search)!= TRUE){
 
             $events = Event::where('name','LIKE',"%$search%")
-            ->get();
+                        ->get();
+            $events_toDay = Event::where('name','LIKE',"%$search%")
+                                ->where('date',$today)->get();
         }
         else{
             $events = Event::orderBy('created_at','desc')->take(10)->get();
+            $events_toDay = Event::where('date',$today)->get();
         }
 
-        $events_toDay = Event::where('date',$today)->get();
+
 
         return view('home',['events'=>$events,'search'=>$search,'events_today'=> $events_toDay]);
 
@@ -123,7 +126,18 @@ class EventController extends Controller
 
     public function destroy($id){
 
-        Event::findOrFail($id)->delete();
+        $user = auth()->user();
+        $event =  Event::findOrFail($id);
+
+        if($user->id != $event->user_id){
+            return redirect('/')->with('err','Você não tem permissão para cancelar esse Evento!');
+        }
+        
+        if(!$event->users->isEmpty()){
+            $this->emailEventoCancelado($event);
+        }
+
+        $event->delete();
 
         return redirect('/dashboard')->with('msg','Excluido com sucesso!');
     }
@@ -175,7 +189,7 @@ class EventController extends Controller
             return redirect('/')->with('err','Não é possivel realizar a reserva de vaga, você é o proprietário desse evento!');
         }
 
-        if($user->eventsAsParticipant->where('date',$event->date)){
+        if(!($user->eventsAsParticipant->where('date',$event->date))->isEmpty()){
             return redirect('/')->with('err','Você já está cadastrado em um evento no dia '.\Carbon\Carbon::parse($event->date)->format('d/m/Y').'!');
         }
 
@@ -196,9 +210,11 @@ class EventController extends Controller
         $user = User::findOrFail($user_logged->id);
 
         if($event->users->contains($user_logged->id)){
-            $user->eventsAsParticipant()->detach($id);
 
+            $user->eventsAsParticipant()->detach($id);
+            $this->enviarEmailCancelamento($user_logged->email,$event);
             return redirect('/dashboard')->with('msg','Reserva'.'em: '.$event->name.' foi cancelada!');
+
         }
 
         return redirect('/dashboard')->with('err','Você não possui reserva nesse evento.');
@@ -216,6 +232,33 @@ class EventController extends Controller
         Mail::to($email_usuario)->send(new MeuEmail($dados));
     }
 
+    public function enviarEmailCancelamento($email_usuario,$event){
+        $dados = [
+            'titulo' => 'Cancelamento da Inscrição no Evento: '.$event->name,
+            'mensagem' => 'Sua inscrição foi cancelada com sucesso. a data: '.\Carbon\Carbon::parse($event->date)->format('d/m/Y').
+            ' está livre para você se inscrever em outro evento.'
+        ];
+
+        Mail::to($email_usuario)->send(new MeuEmail($dados));
+    }
+
+    public function emailEventoCancelado($event){
+
+        $emails = [];
+
+        $dados = [
+            'titulo' => 'Cancelamento do Evento: '.$event->name,
+            'mensagem' => 'O Evento: '.$event->name.' da data: '.\Carbon\Carbon::parse($event->date)->format('d/m/Y').
+            ' infelizmente foi cancelado. Todos os valores pagos serão reembolsados integralmente.'
+            . PHP_EOL .'Att, Gestão do IC Links.'
+        ];
+
+        foreach($event->users as $user){
+            array_push($emails,$user->email);
+        }
+
+        Mail::to($emails)->send(new MeuEmail($dados));
+    }
 
 }
 

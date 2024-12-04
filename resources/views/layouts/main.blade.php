@@ -48,18 +48,6 @@
                     </a></li>
             @endguest
             @auth
-                {{-- <li id="exit">
-                    <form class="form-main" action="{{ url('/logout') }}" method="POST">
-                        @csrf
-                        <a href="/logout"
-                            onclick="event.preventDefault();
-                    this.closest('form').submit();">
-                            <x-icons.login style="width: 25px; margin-right: 3px" />
-                            <p>Sair</p>
-                        </a>
-                    </form>
-                </li>
-                <hr> --}}
                 <li id="shop">
                     <a href="#" id="toggleNav"><x-icons.cog style="width: 25px; margin-right: 3px" />
                         Olá, {{ explode(' ',trim(auth()->user()->name))[0] }}
@@ -67,7 +55,6 @@
 
                     <nav id="navMenu">
                         <ul class="menu-flutuante">
-                            <li><a href="#">Mudar Senha</a></li>
                             <li>
                                 <form class="form-main" action="{{ url('/logout') }}" method="POST">
                                     @csrf

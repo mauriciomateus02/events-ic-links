@@ -12,7 +12,7 @@
         <img id="image-event-detail" src="../{{$event->image_path}}">
         <ul class="list-event-detail">
             <li class="component-list-event-detail" id="title-list-event-detail">
-                <h1 class="title-event-detail">{{$event->name}}</h1>
+                <h2 class="title-event-detail">{{$event->name}}</h2>
             </li>
             <li class="component-list-event-detail">
                 <x-icons.star style="width: 25px; margin-right: 3px; color: #fac753;" />

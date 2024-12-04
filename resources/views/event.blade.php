@@ -31,29 +31,37 @@
 
                     <div class="text-search">
                         {{ $filter }}
-                        <a href="{{route('event.store')}}"><x-icons.x style="width: 18px; margin-right: 3px; color: white" /></a>
+                        <a href="{{ route('event.store') }}"><x-icons.x
+                                style="width: 18px; margin-right: 3px; color: white" /></a>
                     </div>
                 </div>
             @endif
         </div>
     </div>
-    @if (empty($events) != true)
-        <div class="events-body">
-            @foreach ($events as $event)
-                <div class="card-item">
-                    <a href="{{ Route('event', [$event->id]) }}" class="card-link">
-                        <img src="{{ $event->image_path }}" alt="" class="card-image">
-                        <p class="badge">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
-                        <h2 class="card-title">{{ $event->name }}</h2>
-                        <button class="card-button material-symbols-outlined">arrow_forward</button>
-                    </a>
-                </div>
-            @endforeach
-        </div>
+    @if (!empty($events))
+        @if (!$events->isEmpty())
+            <div class="events-body">
+                @foreach ($events as $event)
+                    <div class="card-item">
+                        <a href="{{ Route('event', [$event->id]) }}" class="card-link">
+                            <img src="{{ $event->image_path }}" alt="" class="card-image">
+                            <p class="badge">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
+                            <h2 class="card-title">{{ $event->name }}</h2>
+                            <button class="card-button material-symbols-outlined">arrow_forward</button>
+                        </a>
+                    </div>
+                @endforeach
+
+            </div>
+        @else
+            <div class="events-body-empty">
+                <p class="not-found">Não há eventos disponiveis.</p>
+            </div>
+        @endif
     @else
-    <div class="events-body-empty">
-        <p class="not-found">Não há eventos disponiveis.</p>
-    </div>
+        <div class="events-body-empty">
+            <p class="not-found">Não há eventos disponiveis.</p>
+        </div>
     @endif
 
     <script src="{{ asset('js/home-page.js') }}"></script>
